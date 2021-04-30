@@ -2,11 +2,11 @@
 
 class database
 {
-    private $user = USER;
-    private $host = HOST;
-    private $password = PASSWORD;
-    private $database = DATABASE;
-    private $database_command;
+    private string $user = USER;
+    private string $host = HOST;
+    private string $password = PASSWORD;
+    private string $database = DATABASE;
+    private PDO $database_command;
     private $stmt;
     private $error;
 
@@ -54,6 +54,6 @@ class database
     public function fetch_all_as_arr()
     {
         $this->execute();
-        return $this->stmt->fetchAll();
+        return $this->stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }

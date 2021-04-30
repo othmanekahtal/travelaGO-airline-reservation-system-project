@@ -11,7 +11,7 @@ class post
 
     public function getPost()
     {
-        $sql = 'SELECT * FROM test';
+        $sql = 'SELECT * FROM flights';
         $this->db->query($sql);
         return $this->db->fetch_all_as_arr();
 

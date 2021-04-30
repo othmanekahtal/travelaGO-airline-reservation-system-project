@@ -11,7 +11,7 @@ require_once APPROOT . '/views/include/header.php';
 <!--        </div>-->
 
         <!-- Login Form -->
-        <form method="post" action="<?php echo APPROOT . '/models/login.php'?>">
+        <form method="post" action="<?php echo APPROOT . '/models/users_.php'?>">
             <h1 class="title_form">Login form</h1>
             <input type="text" id="login" class="input fadeIn second" name="username" placeholder="login">
             <input type="password" id="password" class="input fadeIn third" name="password" placeholder="password">
