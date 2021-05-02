@@ -1,7 +1,6 @@
 <?php
 
-class users_
-{
+class _users{
     private $db;
 
     public function __construct()
@@ -19,5 +18,17 @@ class users_
     }
     public function insertUser($name,$email,$password,$birthday,$role){
 
+    }
+    public function Is_new_Email($email){
+
+        $this->db->query('SELECT * FROM user where email=:email');
+        $this->db->bind(":email",$email);
+        $row = $this->db->fetch_as_obj();
+        if(count($row)!=0){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 }
