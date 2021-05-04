@@ -10,7 +10,7 @@
 
 class Core
 {
-    protected mixed $currentController = 'Pages';
+    protected mixed $currentController = 'Home';
     protected string $currentMethod = 'index';
     protected array $params = [];
 

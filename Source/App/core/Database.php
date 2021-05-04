@@ -45,15 +45,20 @@ class database
         return $this->stmt->execute();
     }
 
-    public function fetch_all_as_obj()
+    public function fetch_as_obj()
     {
         $this->execute();
-        return $this->stmt->fetchAll(PDO::FETCH_OBJ);
+        return $this->stmt->fetch(PDO::FETCH_OBJ);
     }
 
     public function fetch_all_as_arr()
     {
         $this->execute();
         return $this->stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    // Get row count
+    public function rowCount(){
+        return $this->stmt->rowCount();
     }
 }
