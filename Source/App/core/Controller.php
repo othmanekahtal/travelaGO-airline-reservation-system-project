@@ -2,7 +2,7 @@
 
 /*
  *
- * Base Controller
+ * base Controller
  * Loads the models and views
  *
  */

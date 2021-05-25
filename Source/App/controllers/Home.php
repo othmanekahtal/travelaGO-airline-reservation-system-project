@@ -7,5 +7,4 @@ class Home extends Controller
         $data = ['title' => 'Home'];
         $this->view("Home/index", $data);
     }
-
 }

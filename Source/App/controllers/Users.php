@@ -11,16 +11,14 @@ class Users extends Controller
 
     public function index()
     {
-        echo 'it\'s work';
+        $data = ['title' => 'Page is not Found'];
+        $this->view("e404/index", $data);
     }
 
     public function register()
     {
-
         // check request
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-
             $data = ['title' => 'Register',
                 "name" => $_POST['full_name'],
                 "email" => $_POST['email'],
@@ -100,11 +98,10 @@ class Users extends Controller
                 'date_error' => '',
                 'accept_error' => ''];
         }
-
-        $this->view("users/register", $data);
-        if ($this->loggedIn()) {
-            die("Dashboard/" . $_SESSION['user_role']);
-            $this->view("Dashboard/" . $_SESSION['user_role'], $data);
+        if (isset($_SESSION['user_role'])) {
+            redirect("dashboard/" . $_SESSION['user_role']);
+        } else {
+            $this->view('users/register', $data);
         }
     }
 
@@ -126,7 +123,6 @@ class Users extends Controller
             }
 
             if (empty($data['email_error']) && empty($data['password_error'])) {
-
                 $user = $this->modalPage->findUser($data['email'], $data['password']);
                 if ($user) {
                     $this->loginSession($user);
@@ -136,12 +132,7 @@ class Users extends Controller
                     } else {
                         $data["email_error"] = 'Email not found';
                     }
-                    if ($this->loggedIn()) {
-                        $this->view('users/login', $data);
-
-                    } else {
-                        $this->view('dashboard/', $data);
-                    }
+                    $this->view('users/login', $data);
                 }
             }
 
@@ -153,16 +144,15 @@ class Users extends Controller
                 'email_error' => '',
                 'password_error' => '',
             ];
-
         }
-        if ($this->loggedIn()) {
-            $this->view("Dashboard/" . $_SESSION['user_role'], $data);
+        if (isset($_SESSION['user_role'])) {
+            redirect("dashboard/" . $_SESSION['user_role']);
         } else {
-            $this->view("users/login", $data);
+            $this->view('users/login', $data);
         }
     }
 
-    public function loginSession($user)
+    private function loginSession($user)
     {
         $_SESSION['user_id'] = $user->id;
         $_SESSION['user_email'] = $user->email;
@@ -170,30 +160,9 @@ class Users extends Controller
         $_SESSION['user_date'] = $user->birthday;
         $_SESSION['user_role'] = $user->role;
         if (isset($_SESSION['user_role'])) {
-            redirect('Dashboard/' . $_SESSION['user_role']);
+            redirect('dashboard/' . $_SESSION['user_role']);
         } else {
             die('Something is wrong!');
         }
     }
-
-    public function loggedIn(): bool
-    {
-        if (isset($_SESSION['user_id'])) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public function logout()
-    {
-        unset($_SESSION['user_id']);
-        unset($_SESSION['user_email']);
-        unset($_SESSION['user_name']);
-        unset($_SESSION['user_date']);
-        unset($_SESSION['user_role']);
-        session_destroy();
-        redirect('users/login');
-    }
-
 }

@@ -1,6 +1,6 @@
 <?php
 
-class dashboard_
+class _Dashboard
 {
     private $db;
 

@@ -1,24 +1,43 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Features</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Pricing</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                </li>
-            </ul>
+<header>
+    <nav class="d-flex justify-content-between align-items-center">
+        <div class="logo rounded-circle">
+            <a href="#">
+                <img src="<?php echo URLROOT . '/Assets/images/logo.png' ?>" alt="logo">
+            </a>
         </div>
-    </div>
-</nav>
+        <form class="search-box">
+            <input type="text" placeholder="search" class="search-box__input">
+            <button class="btn search-box__btn">
+                <i class="search-box__btn__icon bi bi-search"></i>
+            </button>
+        </form>
+        <div class="profile position-relative overflow-hidden">
+            <div class="profile__profile justify-content-center d-flex align-items-center">
+                <div class="profile__image rounded-circle justify-content-center d-flex align-items-center">
+                    <img src="<?php echo URLROOT . '/Assets/images/' . strtolower($_SESSION['user_role']) . '.jpg' ?>"
+                         alt="profile">
+                </div>
+                <div class="caret--icon">
+                    <i class="bi bi-caret-down-fill"></i>
+                    <!-- <i class="bi bi-caret-up-fill"></i> -->
+                </div>
+            </div>
+            <div class="position-absolute list-group profile__options">
+                <a href="#" class="list-group-item list-group-item-action">
+                    profile
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">
+                    Setting
+                </a>
+                <?php
+                if ($_SESSION['user_role'] == 'admin') {
+                    echo '<a href=' . URLROOT . '/dashboard/user' . ' class="list-group-item list-group-item-action">
+                Switch to user
+            </a>';
+                }
+                ?>
+
+            </div>
+        </div>
+    </nav>
+</header>

@@ -3,7 +3,8 @@ require_once APPROOT . '/views/include/header.php';
 ?>
 <h1>
     <?php
-    echo $data['title'];
+//    echo 'hello '.$data['name'];
+    print_r($data)
     ?>
 </h1>
 <?php

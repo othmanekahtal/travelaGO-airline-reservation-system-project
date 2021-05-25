@@ -14,8 +14,8 @@ class _Users
         $this->db->query($sql);
         $this->db->bind(":email", $email, PDO::PARAM_STR);
         $row = $this->db->fetch_as_obj();
-        $hashed_password = $row->password;
         if ($row) {
+            $hashed_password = $row->password;
             if (password_verify($password, $hashed_password)) {
                 return $row;
             } else {
@@ -55,6 +55,10 @@ class _Users
             return false;
         }
     }
-
+    public function GetCol($col,$email){
+        $this->db->query('SELECT '.$col.' FROM user where email=:col');
+        $this->db->bind(":col", $email);
+        return $this->db->fetch_as_obj();
+    }
 
 }

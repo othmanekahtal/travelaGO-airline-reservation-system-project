@@ -26,6 +26,9 @@ class Core
                 unset($url[0]);
                 //require controller :
             }
+            else {
+                $this->currentController='E404';
+            }
         }
         require_once "../App/controllers/" . $this->currentController . '.php';
         //instantiate controller class :
@@ -36,6 +39,7 @@ class Core
                 $this->currentMethod = $url[1];
                 unset($url[1]);
             }
+            // else the method reset the index
         }
         // get the params :
         $this->params = $url ? array_values($url) : [];

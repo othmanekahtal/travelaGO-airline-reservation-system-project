@@ -1,0 +1,69 @@
+
+@import "../abstract/vars";
+html {
+  font-size: 62.5%;
+}
+nav {
+  font-size: 1.8rem;
+  background-color:$color-Grey-light-5;
+  padding: 1.5rem 4.5rem;
+}
+
+.search-box {
+  flex-basis: 40%;
+  flex-shrink: 0;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  &__btn {
+    margin-left: -1rem;
+    transition: all 0.15s;
+    &:active {
+      transform: translateY(4px);
+    }
+
+    &__icon {
+      font-size: 2rem;
+      color: $color-Grey-light-3;
+    }
+  }
+  &__input {
+    font-family: inherit;
+    font-size: inherit;
+    outline: none;
+    border: none;
+    padding: 0.85rem 2rem;
+    background-color: white;
+    border-radius: 2rem;
+    width: 90%;
+    transition: all 0.35s;
+    margin-right: -3.25rem;
+    color: black;
+    &::-webkit-input-placeholder {
+      color: $color-2;
+    }
+    &:focus {
+      width: 100%;
+      background-color: whitesmoke;
+    }
+  }
+}
+.profile {
+  cursor: pointer;
+  &__image {
+    width: 5rem;
+    height: 5rem;
+    background-color: $color-2;
+  }
+  .caret--icon {
+    margin-left: 5px;
+    position: relative;
+    transform: translateY(1px);
+  }
+}
+.text-box {
+  overflow: hidden;
+  width: 100%;
+  text-overflow: ellipsis;
+}
