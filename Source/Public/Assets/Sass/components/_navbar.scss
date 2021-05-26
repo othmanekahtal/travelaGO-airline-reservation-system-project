@@ -1,12 +1,22 @@
-
 @import "../abstract/vars";
+
 html {
   font-size: 62.5%;
 }
+
 nav {
   font-size: 1.8rem;
-  background-color:$color-Grey-light-5;
+  background-color: white;
   padding: 1.5rem 4.5rem;
+  color: $color-Grey-dark-3;
+}
+
+.logo {
+  height: 6.5rem;
+
+  img {
+    height: 100%;
+  }
 }
 
 .search-box {
@@ -16,54 +26,147 @@ nav {
   display: flex;
   justify-content: center;
   align-self: center;
+
   &__btn {
+    all: unset;
     margin-left: -1rem;
     transition: all 0.15s;
+
     &:active {
       transform: translateY(4px);
     }
 
     &__icon {
       font-size: 2rem;
-      color: $color-Grey-light-3;
+      color: $color-Grey-dark-3;
     }
   }
+
   &__input {
     font-family: inherit;
     font-size: inherit;
     outline: none;
     border: none;
     padding: 0.85rem 2rem;
-    background-color: white;
+    background-color: $color-Grey-light-2;
     border-radius: 2rem;
     width: 90%;
     transition: all 0.35s;
     margin-right: -3.25rem;
-    color: black;
+    color: $color-Grey-dark-3;
+
     &::-webkit-input-placeholder {
-      color: $color-2;
+      color: $color-Grey-light-4;
     }
+
     &:focus {
       width: 100%;
-      background-color: whitesmoke;
+      background-color: $color-Grey-light-3;
     }
   }
 }
+
+.profile-control {
+  position: relative;
+}
+
 .profile {
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
   cursor: pointer;
-  &__image {
-    width: 5rem;
-    height: 5rem;
-    background-color: $color-2;
+  align-self: stretch;
+  padding: .75rem 1.5rem;
+  position: relative;
+  transition: all 0.25s ease;
+
+  &__avatar {
+    height: 4.5rem;
+    width: 4.5rem;
+
+    img {
+      height: 100%;
+      width: 100%;
+      border-radius: 50%;
+      margin-right: 1rem;
+      border: 2px solid transparent;
+      transition: border .25s ease-in-out;
+    }
   }
-  .caret--icon {
-    margin-left: 5px;
-    position: relative;
-    transform: translateY(1px);
+
+  &__username {
+    text-transform: capitalize;
+    margin-left: 10px;
+  }
+
+  &:hover {
+    box-shadow: 0 0 5px $color-Grey-light-2;
+    background-color: $color-Grey-light-3;
+
+    .profile__username {
+      color: $color-Grey-dark-2;
+    }
+
+    img {
+      border-color: $color-Grey-dark-3;
+    }
+  }
+
+  &--active {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    box-shadow: unset;
+    background-color: $color-Grey-light-3;
+
+    img {
+      border-color: $color-Grey-dark-3;
+    }
   }
 }
-.text-box {
+
+.panel {
+  z-index: 12;
+  height: 0;
   overflow: hidden;
+  position: absolute;
+  background-color: $color-Grey-light-3;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  padding-left: unset;
   width: 100%;
-  text-overflow: ellipsis;
+  list-style: none;
+
+  li {
+    padding: .75rem .75rem .75rem 2rem;
+
+    a {
+      display: inline-block;
+      text-decoration: none;
+      color: $color-Grey-dark-3;
+    }
+
+    &:hover {
+      background-color: $color-Grey-light-3;
+
+      a {
+        color: $color-Grey-dark-2;
+      }
+    }
+
+    &.danger {
+      background-color: lighten($color-Red-1, 10%);
+      transition: all .25s ease-in-out;
+
+      &:hover {
+        background-color: $color-Red-1;
+      }
+
+      a {
+        color: $color-Red;
+      }
+
+    }
+  }
 }
+
+

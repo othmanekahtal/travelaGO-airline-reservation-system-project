@@ -1,9 +1,11 @@
 // to show the menu of profile option :
-export const profile = () => {
+ const profile = () => {
     const profile = document.querySelector(".profile");
-    const caret_icon = document.querySelector(".caret--icon .bi");
+    const panel = document.querySelector('.panel');
     profile.addEventListener("click", function () {
-        this.classList.toggle("overflow-hidden");
-        caret_icon.classList.toggle("bi-caret-up-fill");
+        this.classList.toggle("profile--active");
+        panel.classList.toggle('normal-height');
     });
 }
+
+export {profile};

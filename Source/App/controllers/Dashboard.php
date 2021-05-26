@@ -2,22 +2,26 @@
 
 class Dashboard extends Controller
 {
-    protected $modalPage;
+    public $modalPage;
 
     public function __construct()
     {
         $this->modalPage = $this->model('_Dashboard');
     }
-    public function index(){
+
+    public function index()
+    {
         $data = ['title' => 'Page is not Found'];
         $this->view("e404/index", $data);
 
     }
+
     public function user()
     {
-        $data['title'] = 'Welcome '.$_SESSION['user_name'];
-        $this->view("dashboard/user",$data);
+        $data['title'] = 'Welcome ' . $_SESSION['user_name'];
+        $this->view("dashboard/user", $data);
     }
+
     public function loggedIn(): bool
     {
         if (isset($_SESSION['user_id'])) {
@@ -26,20 +30,22 @@ class Dashboard extends Controller
             return false;
         }
     }
+
     public function admin()
     {
 //        $data['title'] = 'Admin dashboard';
         if ($this->loggedIn()) {
-            $data['name']=$_SESSION['user_name'];
-            $data['title']='dashboard '.$_SESSION['user_role'];
+            $data['name'] = $_SESSION['user_name'];
+            $data['title'] = 'dashboard ' . $_SESSION['user_role'];
 //            die(print_r($data));
             $this->view("dashboard/" . $_SESSION['user_role'], $data);
 
-        }else {
+        } else {
             redirect('users/login');
         }
 
     }
+
     public function logout()
     {
         unset($_SESSION['user_id']);
@@ -49,5 +55,11 @@ class Dashboard extends Controller
         unset($_SESSION['user_role']);
         session_destroy();
         redirect('users/login');
+    }
+
+    public function edit()
+    {
+        // edit here :
+        die('edit profile');
     }
 }
