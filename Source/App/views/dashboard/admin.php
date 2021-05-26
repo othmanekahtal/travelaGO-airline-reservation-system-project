@@ -44,7 +44,47 @@
         </div>
     </nav>
 </header>
-<script type="module" src="<?php echo URLROOT . '/Assets/scripts/admin.js' ?>"></script>
+
+<div class="reservation">
+    <div class="reservation-search">
+        <div class="table-responsive ">
+            <caption>List of Reservations</caption>
+            <table class="table table-striped ">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Departure</th>
+                    <th scope="col">Arrival</th>
+                    <th scope="col">Trademark</th>
+                    <th scope="col">admin</th>
+                    <th scope="col">date Added</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php
+                // it's work
+                //                echo print_r($data['flights']);
+                foreach ($data['flights'] as $flight) {
+//                    echo $flight['id'];
+                    echo '<tr>
+                    <th scope="row">' . $flight['id'] . '</th>
+                    <td class="date_flight">' . $flight['date_arriv'] . '</td>
+                    <td class="departure_flight">' . $flight['departure'] . '</td>
+                    <td class="arrival_flight">' . $flight['arrival'] . '</td>
+                    <td class="trademark_flight">' . $flight['trademark'] . '</td>
+                    <td class="reserv_flight">
+                    <a href="reservation/' . $flight['id'] . '" class="btn 
+                    btn-outline-primary">Reserve now</a></td>
+                </tr>';
+                }
+                ?>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+    <script type="module" src="<?php echo URLROOT . '/Assets/scripts/admin.js' ?>"></script>
 </body>
 </html>
 

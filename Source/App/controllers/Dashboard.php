@@ -18,8 +18,27 @@ class Dashboard extends Controller
 
     public function user()
     {
+        $data['flights'] = $this->modalPage->getFlights();
+        $data['reservations'] = $this->modalPage->GetReservations();
+
         $data['title'] = 'Welcome ' . $_SESSION['user_name'];
         $this->view("dashboard/user", $data);
+    }
+
+
+    public function admin()
+    {
+//        $data['title'] = 'Admin dashboard';
+        if ($this->loggedIn()) {
+            $data['name'] = $_SESSION['user_name'];
+            $data['title'] = 'dashboard ' . $_SESSION['user_name'];
+//            die(print_r($data));
+            $this->view("dashboard/" . $_SESSION['user_role'], $data);
+
+        } else {
+            redirect('users/login');
+        }
+
     }
 
     public function loggedIn(): bool
@@ -31,19 +50,15 @@ class Dashboard extends Controller
         }
     }
 
-    public function admin()
+    public function edit()
     {
-//        $data['title'] = 'Admin dashboard';
-        if ($this->loggedIn()) {
-            $data['name'] = $_SESSION['user_name'];
-            $data['title'] = 'dashboard ' . $_SESSION['user_role'];
-//            die(print_r($data));
-            $this->view("dashboard/" . $_SESSION['user_role'], $data);
+        // edit here :
+        die('edit profile');
+    }
 
-        } else {
-            redirect('users/login');
-        }
-
+    public function reservations()
+    {
+        die('Your Tickets here !');
     }
 
     public function logout()
@@ -57,9 +72,9 @@ class Dashboard extends Controller
         redirect('users/login');
     }
 
-    public function edit()
+    public function reservation()
     {
-        // edit here :
-        die('edit profile');
+        $data['title'] = $_SESSION['user_name'];
+        $this->view("dashboard/reservation", $data);
     }
 }

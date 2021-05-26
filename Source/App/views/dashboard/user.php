@@ -26,7 +26,7 @@
             </a>
         </div>
         <form class="search-box">
-            <input type="text" placeholder="search" class="search-box__input">
+            <input type="text" placeholder="search by trademark" class="search-box__input">
             <button class="search-box__btn">
                 <i class="search-box__btn__icon bi bi-search"></i>
             </button>
@@ -41,6 +41,7 @@
             </div>
             <ul class="panel">
                 <li><a href="<?php echo URLROOT . '/dashboard/edit' ?>">Setting</a></li>
+                <li><a href="<?php echo URLROOT . '/dashboard/reservations' ?>">Your Tickets</a></li>
                 <?php if ($_SESSION['user_role'] == 'admin') {
                     echo '<li><a href=' . URLROOT . '/dashboard/admin>Switch to admin</a></li>';
                 } ?>
@@ -50,15 +51,6 @@
         </div>
     </nav>
 </header>
-<!--we need this classes to implement our application
-date :
-<tr>
-    <th scope="row">1</th>
-    <td class="date_flight">2021-02-12</td>
-    <td class="departure_flight">s</td>
-    <td class="arrival_flight">d</td>
-</tr>
--->
 <div class="reservation">
     <div class="reservation-search">
         <h1 class="primary-title">Take your flight now</h1>
@@ -89,27 +81,34 @@ date :
                     <th scope="col">Date</th>
                     <th scope="col">Departure</th>
                     <th scope="col">Arrival</th>
+                    <th scope="col">Trademark</th>
+                    <th scope="col">Reservation</th>
                 </tr>
                 </thead>
                 <tbody>
                 <?php
                 // it's work
-                echo print_r($this->modalPage);
-                //                foreach (true) {
-                echo '<tr>
-                    <th scope="row">1</th>
-                    <td class="date_flight">2021-02-12</td>
-                    <td class="departure_flight">s</td>
-                    <td class="arrival_flight">d</td>
+                //                echo print_r($data['flights']);
+                foreach ($data['flights'] as $flight) {
+//                    echo $flight['id'];
+                    echo '<tr>
+                    <th scope="row">' . $flight['id'] . '</th>
+                    <td class="date_flight">' . $flight['date_arriv'] . '</td>
+                    <td class="departure_flight">' . $flight['departure'] . '</td>
+                    <td class="arrival_flight">' . $flight['arrival'] . '</td>
+                    <td class="trademark_flight">' . $flight['trademark'] . '</td>
+                    <td class="reserv_flight">
+                    <a href="reservation/' . $flight['id'] . '" class="btn 
+                    btn-outline-primary">Reserve now</a></td>
                 </tr>';
-                //                }
+                }
                 ?>
                 </tbody>
             </table>
 
         </div>
     </div>
-
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script type="module" src="<?php echo URLROOT . '/Assets/scripts/user.js' ?>"></script>
 </body>
 </html>

@@ -118,4 +118,10 @@ nav {
       .panel li.danger a {
         color: #c52702; }
 
+.hidden-element {
+  display: none; }
+
+.normal-height {
+  height: unset; }
+
 /*# sourceMappingURL=admin.css.map */
