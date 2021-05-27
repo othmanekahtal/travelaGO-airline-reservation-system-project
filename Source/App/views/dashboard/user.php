@@ -9,9 +9,9 @@
             integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
             crossorigin="anonymous"></script>
     <!-- CSS only -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.5.0/mdb.min.css" rel="stylesheet"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.5.0/mdb.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="<?php echo URLROOT . '/Assets/dist/user.css' ?>"/>
     <link rel="shortcut icon" href="<?php echo URLROOT . '/Assets/images/logo.png' ?>" type="image/x-icon">
@@ -41,7 +41,7 @@
             </div>
             <ul class="panel">
                 <li><a href="<?php echo URLROOT . '/dashboard/edit' ?>">Setting</a></li>
-                <li><a href="<?php echo URLROOT . '/dashboard/reservations' ?>">Your Tickets</a></li>
+                <li><a href="<?php echo URLROOT . '/dashboard/tickets' ?>">Your Tickets</a></li>
                 <?php if ($_SESSION['user_role'] == 'admin') {
                     echo '<li><a href=' . URLROOT . '/dashboard/admin>Switch to admin</a></li>';
                 } ?>

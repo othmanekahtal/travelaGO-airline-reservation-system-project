@@ -25,9 +25,8 @@ class Core
                 // and we should unset the value of index 0 in url:
                 unset($url[0]);
                 //require controller :
-            }
-            else {
-                $this->currentController='E404';
+            } else {
+                $this->currentController = 'E404';
             }
         }
         require_once "../App/controllers/" . $this->currentController . '.php';

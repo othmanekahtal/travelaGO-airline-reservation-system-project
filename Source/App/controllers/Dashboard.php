@@ -28,6 +28,8 @@ class Dashboard extends Controller
 
     public function admin()
     {
+        $data['flights'] = $this->modalPage->getFlights();
+
 //        $data['title'] = 'Admin dashboard';
         if ($this->loggedIn()) {
             $data['name'] = $_SESSION['user_name'];
@@ -56,7 +58,7 @@ class Dashboard extends Controller
         die('edit profile');
     }
 
-    public function reservations()
+    public function tickets()
     {
         die('Your Tickets here !');
     }
@@ -72,9 +74,21 @@ class Dashboard extends Controller
         redirect('users/login');
     }
 
-    public function reservation()
+    public function reservation($id)
     {
         $data['title'] = $_SESSION['user_name'];
         $this->view("dashboard/reservation", $data);
+        die($id[0]);
+    }
+
+    public function deleteflight($id)
+    {
+        $r = $this->modalPage->deleteFlights($id[0]);
+        print_r(json_encode([$r]));
+    }
+
+    public function editflight()
+    {
+        
     }
 }

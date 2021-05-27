@@ -5,3 +5,12 @@
 .normal-height {
   height: unset;
 }
+
+.popup {
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba($color-Grey-light-2, 25%);
+  backdrop-filter: blur(10px);
+}

@@ -13,8 +13,8 @@
     <link rel="shortcut icon" href="<?php echo URLROOT . '/Assets/images/logo.png' ?>" type="image/x-icon">
     <title><?php echo SITE_NAME . ' | ' . $data['title'] ?></title>
 </head>
-<body>
-<header>
+<body class="position-relative">
+<header class="header">
     <nav class="d-flex justify-content-between align-items-center">
         <div class="logo rounded-circle">
             <a href="#">
@@ -44,47 +44,59 @@
         </div>
     </nav>
 </header>
-
 <div class="reservation">
-    <div class="reservation-search">
-        <div class="table-responsive ">
-            <caption>List of Reservations</caption>
-            <table class="table table-striped ">
-                <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Departure</th>
-                    <th scope="col">Arrival</th>
-                    <th scope="col">Trademark</th>
-                    <th scope="col">admin</th>
-                    <th scope="col">date Added</th>
-                </tr>
-                </thead>
-                <tbody>
-                <?php
-                // it's work
-                //                echo print_r($data['flights']);
-                foreach ($data['flights'] as $flight) {
-//                    echo $flight['id'];
-                    echo '<tr>
+    <div class="table-responsive ">
+        <caption>List of Reservations</caption>
+        <table class="table table-striped ">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Date</th>
+                <th scope="col">Departure</th>
+                <th scope="col">Arrival</th>
+                <th scope="col">Trademark</th>
+                <th scope="col">Admin</th>
+                <th scope="col">Date Added</th>
+                <th scope="col">Action</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <?php
+            foreach ($data['flights'] as $flight) {
+                $admin = $flight['admin'];
+                if ($admin == ucwords($_SESSION['user_name'])) {
+                    $admin = 'you';
+                }
+                $admin = ucwords($admin);
+                echo '<tr>
                     <th scope="row">' . $flight['id'] . '</th>
                     <td class="date_flight">' . $flight['date_arriv'] . '</td>
                     <td class="departure_flight">' . $flight['departure'] . '</td>
                     <td class="arrival_flight">' . $flight['arrival'] . '</td>
                     <td class="trademark_flight">' . $flight['trademark'] . '</td>
-                    <td class="reserv_flight">
-                    <a href="reservation/' . $flight['id'] . '" class="btn 
-                    btn-outline-primary">Reserve now</a></td>
+                    <td class="admins_flight">
+                         ' . $admin . '
+                    </td>
+                    <td class="date_add_flight">' . $flight['date_add'] . '</td>  
+                    <td class="action_flight">
+                    <button type="button" class="btn btn-outline-dark action_flight__edit">Edit</button>
+                    <button type="button" class="btn btn-danger action_flight__delete">Delete</button>
+                    </td>
                 </tr>';
-                }
-                ?>
-                </tbody>
-            </table>
-
-        </div>
+            }
+            ?>
+            </tbody>
+        </table>
     </div>
-    <script type="module" src="<?php echo URLROOT . '/Assets/scripts/admin.js' ?>"></script>
+</div>
+<div class="popup position-absolute align-items-center justify-content-center hidden-element">
+    <div class="popup__edit">
+        edit popup
+    </div>
+</div>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script type="module" src="<?php echo URLROOT . '/Assets/scripts/admin.js' ?>"></script>
 </body>
 </html>
 

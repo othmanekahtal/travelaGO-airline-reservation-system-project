@@ -1,5 +1,5 @@
 //profile menu bar :
-import {profile} from './functions.js';
+import {profile, searchInHTMLCollection, search_box__input} from './functions.js';
 
 profile();
 const date_search = document.getElementById('date_search');
@@ -10,7 +10,6 @@ const flights_date = document.getElementsByClassName('date_flight');
 const flights_trademark = document.getElementsByClassName('trademark_flight');
 
 const btn_form_search = document.querySelector('.input__submit input');
-const search_box__input = document.querySelector('.search-box__input');
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -24,8 +23,8 @@ btn_form_search.addEventListener('click', function (e) {
     if (date_input === '' || depart_input === '' || arrival_input === '') {
         // alert('please fill forms');
         swal({
-            title: "Are you fill fields?",
-            text: "please fill fields to get result for flights !",
+            title: "Did you fill fields?",
+            text: "please fill fields to get result available !",
             icon: "error",
             dangerMode: true,
         });
@@ -44,15 +43,7 @@ btn_form_search.addEventListener('click', function (e) {
         })
     }
 })
+
 search_box__input.addEventListener('keyup', function () {
-    console.log(this.value);
-    console.log(flights_trademark);
-    [...flights_trademark].forEach(element => {
-            if (search_box__input.value && (element.textContent.indexOf(search_box__input.value) === -1 || element.textContent.indexOf(search_box__input.value) !== 0)) {
-                element.parentElement.classList.add('hidden-element');
-            } else {
-                element.parentElement.classList.remove('hidden-element');
-            }
-        }
-    )
+    searchInHTMLCollection(flights_trademark, this)
 })

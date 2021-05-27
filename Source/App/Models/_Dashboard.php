@@ -28,4 +28,11 @@ class _Dashboard
         $this->db->execute();
         return $this->db->fetch_all_as_arr();
     }
+
+    public function deleteFlights($id)
+    {
+        $this->db->query('DELETE FROM flights WHERE id=:id');
+        $this->db->bind(':id', $id, PDO::PARAM_INT);
+        return $this->db->execute();
+    }
 }
