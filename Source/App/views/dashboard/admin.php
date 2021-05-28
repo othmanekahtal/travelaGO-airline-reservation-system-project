@@ -46,14 +46,16 @@
 </header>
 <div class="reservation">
     <div class="table-responsive ">
-        <caption>List of Reservations</caption>
+        <caption><h1 class="text-center mb-5">List of Reservations</h1></caption>
         <table class="table table-striped ">
             <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Date</th>
+                <th scope="col">Depart date</th>
+                <th scope="col">Arrival date</th>
                 <th scope="col">Departure</th>
                 <th scope="col">Arrival</th>
+                <th scope="col">reset place</th>
                 <th scope="col">Trademark</th>
                 <th scope="col">Admin</th>
                 <th scope="col">Date Added</th>
@@ -64,24 +66,39 @@
             <tbody>
             <?php
             foreach ($data['flights'] as $flight) {
+                if ($flight['limit_place'] < 25) {
+                    $place_class = 'place__flight text-danger fw-bold';
+
+                } else {
+                    $place_class = 'place__flight';
+                }
                 $admin = $flight['admin'];
                 if ($admin == ucwords($_SESSION['user_name'])) {
                     $admin = 'you';
                 }
+                if ($flight['admin'] != ucwords($_SESSION['user_name'])) {
+                    $class_edit = 'btn btn-outline-dark action_flight__edit disabled';
+                    $class_delete = 'btn btn-danger action_flight__delete disabled';
+                } else {
+                    $class_edit = 'btn btn-outline-dark action_flight__edit';
+                    $class_delete = 'btn btn-danger action_flight__delete';
+                }
                 $admin = ucwords($admin);
                 echo '<tr>
                     <th scope="row">' . $flight['id'] . '</th>
+                    <td class="date_flight">' . $flight['date_depart'] . '</td>
                     <td class="date_flight">' . $flight['date_arriv'] . '</td>
                     <td class="departure_flight">' . $flight['departure'] . '</td>
                     <td class="arrival_flight">' . $flight['arrival'] . '</td>
+                    <td class="' . $place_class . '">' . $flight['limit_place'] . '</td>                   
                     <td class="trademark_flight">' . $flight['trademark'] . '</td>
                     <td class="admins_flight">
                          ' . $admin . '
                     </td>
                     <td class="date_add_flight">' . $flight['date_add'] . '</td>  
                     <td class="action_flight">
-                    <button type="button" class="btn btn-outline-dark action_flight__edit">Edit</button>
-                    <button type="button" class="btn btn-danger action_flight__delete">Delete</button>
+                    <button type="button" class="' . $class_edit . '">Edit</button>
+                    <button type="button" class="' . $class_delete . '">Delete</button>
                     </td>
                 </tr>';
             }
@@ -92,7 +109,39 @@
 </div>
 <div class="popup position-absolute align-items-center justify-content-center hidden-element">
     <div class="popup__edit">
-        edit popup
+        <form>
+            <div class="form-row">
+                <div class="text-center mb-4">
+                    <h1>
+                        Update flight
+                    </h1>
+                </div>
+                <div class="col mb-4">
+                    <input type="text" class="form-control popup__limit-place" placeholder="Limit Place"
+                           pattern="[0-9]{3}"
+                           required>
+                </div>
+                <div class="col mb-4">
+                    <input type="date" class="form-control popup__depart-date" placeholder="Depart date" required>
+                </div>
+                <div class="col mb-4">
+                    <input type="date" class="form-control popup__arrival-date" placeholder="Arrival date" required>
+                </div>
+                <div class="col mb-4">
+                    <input type="text" class="form-control popup__arrival" placeholder="Arrival" required>
+                </div>
+                <div class="col mb-4">
+                    <input type="text" class="form-control popup__departure" placeholder="Departure" required>
+                </div>
+                <div class="col mb-4">
+                    <input type="text" class="form-control popup__trademark" placeholder="trademark" required>
+                </div>
+                <div class="col d-flex justify-content-between">
+                    <button type="button" class="btn btn-outline-danger popUpCancelButton">Cancel</button>
+                    <button type="button" class="btn btn-success popUpApplyButton">Apply</button>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>

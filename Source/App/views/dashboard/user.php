@@ -73,14 +73,16 @@
         </form>
 
         <div class="table-responsive ">
-            <caption>List of Reservations</caption>
+            <caption><h1 class="text-center mb-5">List of Reservations</h1></caption>
             <table class="table table-striped ">
                 <thead>
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Date</th>
+                    <th scope="col">Arrival date</th>
                     <th scope="col">Departure</th>
                     <th scope="col">Arrival</th>
+                    <th scope="col">reset place</th>
                     <th scope="col">Trademark</th>
                     <th scope="col">Reservation</th>
                 </tr>
@@ -91,15 +93,24 @@
                 //                echo print_r($data['flights']);
                 foreach ($data['flights'] as $flight) {
 //                    echo $flight['id'];
+                    if ($flight['limit_place'] < 25) {
+                        $place_class = 'place__flight text-danger fw-bold';
+
+                    } else {
+                        $place_class = 'place__flight';
+                    }
+                    $class_reservation_button = 'btn btn-outline-dark';
+                    $flight['limit_place'] == 0 && $class_reservation_button = 'btn btn-dark disabled';
                     echo '<tr>
                     <th scope="row">' . $flight['id'] . '</th>
-                    <td class="date_flight">' . $flight['date_arriv'] . '</td>
+                    <td class="date_flight">' . $flight['date_depart'] . '</td>
+                    <td class="date_arrival">' . $flight['date_arriv'] . '</td>
                     <td class="departure_flight">' . $flight['departure'] . '</td>
                     <td class="arrival_flight">' . $flight['arrival'] . '</td>
+                    <td class="' . $place_class . '">' . $flight['limit_place'] . '</td>                    
                     <td class="trademark_flight">' . $flight['trademark'] . '</td>
                     <td class="reserv_flight">
-                    <a href="reservation/' . $flight['id'] . '" class="btn 
-                    btn-outline-primary">Reserve now</a></td>
+                    <a href="reservation/' . $flight['id'] . '" class="' . $class_reservation_button . '">Reserve now</a></td>
                 </tr>';
                 }
                 ?>
