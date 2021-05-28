@@ -138,7 +138,7 @@
                 </div>
                 <div class="col d-flex justify-content-between">
                     <button type="button" class="btn btn-outline-danger popUpCancelButton">Cancel</button>
-                    <button type="button" class="btn btn-success popUpApplyButton">Apply</button>
+                    <button type="submit" class="btn btn-success popUpApplyButton">Apply</button>
                 </div>
             </div>
         </form>

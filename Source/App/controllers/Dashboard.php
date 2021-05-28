@@ -87,8 +87,8 @@ class Dashboard extends Controller
         print_r(json_encode([$r]));
     }
 
-    public function editflight()
+    public function editflight($data)
     {
-        
+        print_r(json_encode([1]));
     }
 }

@@ -65,8 +65,6 @@ search_box__input.addEventListener('keyup', function () {
                                 button: "OK",
                             });
                         }
-                    } else {
-                        swal("This flight is safe!");
                     }
                 });
             console.log(id)
@@ -79,42 +77,86 @@ search_box__input.addEventListener('keyup', function () {
         popUp.classList.toggle('hidden-element');
         popUp.classList.add('d-flex');
         const id = this.parentElement.parentElement.children[0].textContent;
-        const departDate = this.parentElement.parentElement.children[1].textContent;
-        const arrivalDate = this.parentElement.parentElement.children[2].textContent;
-        const departure = this.parentElement.parentElement.children[3].textContent;
-        const arrival = this.parentElement.parentElement.children[4].textContent;
-        const resetPlace = this.parentElement.parentElement.children[5].textContent;
-        const Trademark = this.parentElement.parentElement.children[6].textContent;
-        popup__limit_place.value = resetPlace;
-        popup__arrival.value = arrival;
-        popup__arrival_date.value = arrivalDate;
-        popup__depart_date.value = departDate;
-        popup__departure.value = departure;
-        popup__trademark.value = Trademark;
-        popUpApplyButton.addEventListener('click', function () {
-            
+        const departDate = this.parentElement.parentElement.children[1];
+        const arrivalDate = this.parentElement.parentElement.children[2];
+        const departure = this.parentElement.parentElement.children[3];
+        const arrival = this.parentElement.parentElement.children[4];
+        const resetPlace = this.parentElement.parentElement.children[5];
+        const Trademark = this.parentElement.parentElement.children[6];
+        popup__limit_place.value = resetPlace.textContent;
+        popup__arrival.value = arrival.textContent;
+        popup__arrival_date.value = arrivalDate.textContent;
+        popup__depart_date.value = departDate.textContent;
+        popup__departure.value = departure.textContent;
+        popup__trademark.value = Trademark.textContent;
+        popUpApplyButton.addEventListener('click', async function (e) {
+            e.preventDefault();
+            if (popup__limit_place.value.trim() &&
+                popup__arrival.value.trim() &&
+                popup__arrival_date.value.trim() &&
+                popup__depart_date.value.trim() &&
+                popup__departure.value.trim() &&
+                popup__trademark.value.trim()
+            ) {
+                let request = await fetch("http://localhost/TravelaGO/Source/dashboard/editflight", {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        'id': id,
+                        'departDate': departDate.textContent,
+                        'arrivalDate': arrivalDate.textContent,
+                        'departure': departure.textContent,
+                        'arrival': arrival.textContent,
+                        'resetPlace': resetPlace.textContent,
+                        'Trademark': Trademark.textContent
+                    })
+                });
+                let respond = await request.json();
+                console.log(respond);
+                if (respond[0]) {
+                    swal("Success! flight has been updated!", {
+                        icon: "success",
+                        buttons: {
+                            content: "ok"
+                        }
+                    });
+                    resetPlace.textContent = popup__limit_place.value;
+                    arrival.textContent = popup__arrival.value;
+                    arrivalDate.textContent = popup__arrival_date.value;
+                    departDate.textContent = popup__depart_date.value;
+                    departure.textContent = popup__departure.value;
+                    Trademark.textContent = popup__trademark.value;
+
+                    popup__limit_place.value =
+                        popup__arrival.value =
+                            popup__arrival_date.value =
+                                popup__depart_date.value =
+                                    popup__departure.value =
+                                        popup__trademark.value = '';
+                    closePop();
+                } else {
+                    swal("failed! flight has not been updated!", {
+                        icon: "error",
+                        dangerMode: true,
+                    });
+                }
+            } else {
+                swal("fill all fields, please!", {
+                    icon: "warning",
+                    dangerMode: true,
+                });
+            }
         })
     })
 })
 // popUpclose.addEventListener('click', closePop);
 
 popUpCancelButton.addEventListener('click', () => {
-    swal({
-        title: "Are you sure?",
-        text: "Once deleted, you will not be able to recover this imaginary file!",
-        icon: "warning",
-        buttons: true,
-        dangerMode: true,
-    }).then((value) => {
-        if (value) {
-            console.log(value);
-            popup__limit_place.value =
-                popup__arrival.value =
-                    popup__arrival_date.value =
-                        popup__depart_date.value =
-                            popup__departure.value =
-                                popup__trademark.value = '';
-            closePop();
-        }
-    });
+    popup__limit_place.value =
+        popup__arrival.value =
+            popup__arrival_date.value =
+                popup__depart_date.value =
+                    popup__departure.value =
+                        popup__trademark.value = '';
+    closePop();
+
 });
