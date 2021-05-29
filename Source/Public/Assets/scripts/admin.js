@@ -83,6 +83,12 @@ search_box__input.addEventListener('keyup', function () {
         const arrival = this.parentElement.parentElement.children[4];
         const resetPlace = this.parentElement.parentElement.children[5];
         const Trademark = this.parentElement.parentElement.children[6];
+        popup__limit_place.value =
+            popup__arrival.value =
+                popup__arrival_date.value =
+                    popup__depart_date.value =
+                        popup__departure.value =
+                            popup__trademark.value = '';
         popup__limit_place.value = resetPlace.textContent;
         popup__arrival.value = arrival.textContent;
         popup__arrival_date.value = arrivalDate.textContent;
@@ -102,36 +108,32 @@ search_box__input.addEventListener('keyup', function () {
                     method: 'POST',
                     body: JSON.stringify({
                         'id': id,
-                        'departDate': departDate.textContent,
-                        'arrivalDate': arrivalDate.textContent,
-                        'departure': departure.textContent,
-                        'arrival': arrival.textContent,
-                        'resetPlace': resetPlace.textContent,
-                        'Trademark': Trademark.textContent
+                        'departDate': popup__depart_date.value.trim(),
+                        'arrivalDate': popup__arrival_date.value.trim(),
+                        'departure': popup__departure.value.trim(),
+                        'arrival': popup__arrival.value.trim(),
+                        'resetPlace': popup__limit_place.value.trim(),
+                        'Trademark': popup__trademark.value.trim()
                     })
                 });
                 let respond = await request.json();
                 console.log(respond);
-                if (respond[0]) {
+                if (respond) {
                     swal("Success! flight has been updated!", {
                         icon: "success",
                         buttons: {
                             content: "ok"
                         }
                     });
+                    // to ignore the bubbling problem in js events :
+                    window.location.reload();
+                    console.log(popup__limit_place.value, popup__arrival.value, popup__depart_date.value, popup__departure.value, popup__trademark.value)
                     resetPlace.textContent = popup__limit_place.value;
                     arrival.textContent = popup__arrival.value;
                     arrivalDate.textContent = popup__arrival_date.value;
                     departDate.textContent = popup__depart_date.value;
                     departure.textContent = popup__departure.value;
                     Trademark.textContent = popup__trademark.value;
-
-                    popup__limit_place.value =
-                        popup__arrival.value =
-                            popup__arrival_date.value =
-                                popup__depart_date.value =
-                                    popup__departure.value =
-                                        popup__trademark.value = '';
                     closePop();
                 } else {
                     swal("failed! flight has not been updated!", {

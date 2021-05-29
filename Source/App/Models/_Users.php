@@ -1,4 +1,5 @@
 <?php
+
 class _Users
 {
     private $db;
@@ -10,7 +11,8 @@ class _Users
 
     public function findUser($email, $password)
     {
-        $sql = 'SELECT * FROM user where email=:email';
+        $sql = /** @lang text */
+            'SELECT * FROM user where email=:email';
         $this->db->query($sql);
         $this->db->bind(":email", $email, PDO::PARAM_STR);
         $row = $this->db->fetch_as_obj();
@@ -28,7 +30,7 @@ class _Users
 
     public function insertUser($data)
     {
-        $this->db->query('insert into user (name,email,password,birthday,role) values (:name,:email,:password,:birthday,:role)');
+        $this->db->query(/** @lang text */ 'insert into user (name,email,password,birthday,role) values (:name,:email,:password,:birthday,:role)');
         // bind placeholders :
         $this->db->bind(":name", $data['name'], PDO::PARAM_STR);
         $this->db->bind(":email", $data['email'], PDO::PARAM_STR);
@@ -46,7 +48,7 @@ class _Users
     public function Is_new_Email($email)
     {
 
-        $this->db->query('SELECT * FROM user where email=:email');
+        $this->db->query(/** @lang text */ 'SELECT * FROM user where email=:email');
         $this->db->bind(":email", $email);
         $row = $this->db->fetch_as_obj();
         if ($this->db->rowCount()) {
@@ -55,8 +57,10 @@ class _Users
             return false;
         }
     }
-    public function GetCol($col,$email){
-        $this->db->query('SELECT '.$col.' FROM user where email=:col');
+
+    public function GetCol($col, $email)
+    {
+        $this->db->query(/** @lang text */ 'SELECT ' . $col . ' FROM user where email=:col');
         $this->db->bind(":col", $email);
         return $this->db->fetch_as_obj();
     }

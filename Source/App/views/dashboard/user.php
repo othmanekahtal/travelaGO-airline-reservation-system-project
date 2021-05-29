@@ -51,57 +51,58 @@
         </div>
     </nav>
 </header>
-<div class="reservation">
-    <div class="reservation-search">
-        <h1 class="primary-title">Take your flight now</h1>
-        <form class="search-form">
-            <div class="input input__date">
-                <label for="date_search">date</label>
-                <input class type="date" name="date" id="date_search">
-            </div>
-            <div class="input input__primary">
-                <label for="depart">depart</label>
-                <input type="text" id="depart">
-            </div>
-            <div class="input input__primary">
-                <label for="depart">arrival</label>
-                <input type="text" id="arrival">
-            </div>
-            <div class="input input__submit">
-                <input type="submit" value="search">
-            </div>
-        </form>
+<div class="container">
+    <div class="reservation">
+        <div class="reservation-search">
+            <h1 class="primary-title">Take your flight now</h1>
+            <form class="search-form">
+                <div class="input input__date">
+                    <label for="date_search">date</label>
+                    <input class type="date" name="date" id="date_search">
+                </div>
+                <div class="input input__primary">
+                    <label for="depart">depart</label>
+                    <input type="text" id="depart">
+                </div>
+                <div class="input input__primary">
+                    <label for="depart">arrival</label>
+                    <input type="text" id="arrival">
+                </div>
+                <div class="input input__submit">
+                    <input type="submit" value="search">
+                </div>
+            </form>
 
-        <div class="table-responsive ">
-            <caption><h1 class="text-center mb-5">List of Reservations</h1></caption>
-            <table class="table table-striped ">
-                <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Arrival date</th>
-                    <th scope="col">Departure</th>
-                    <th scope="col">Arrival</th>
-                    <th scope="col">reset place</th>
-                    <th scope="col">Trademark</th>
-                    <th scope="col">Reservation</th>
-                </tr>
-                </thead>
-                <tbody>
-                <?php
-                // it's work
-                //                echo print_r($data['flights']);
-                foreach ($data['flights'] as $flight) {
+            <div class="table-responsive ">
+                <caption><h1 class="text-center mb-5">List of Reservations</h1></caption>
+                <table class="table table-striped ">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Arrival date</th>
+                        <th scope="col">Departure</th>
+                        <th scope="col">Arrival</th>
+                        <th scope="col">reset place</th>
+                        <th scope="col">Trademark</th>
+                        <th scope="col">Reservation</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    // it's work
+                    //                echo print_r($data['flights']);
+                    foreach ($data['flights'] as $flight) {
 //                    echo $flight['id'];
-                    if ($flight['limit_place'] < 25) {
-                        $place_class = 'place__flight text-danger fw-bold';
+                        if ($flight['limit_place'] < 25) {
+                            $place_class = 'place__flight text-danger fw-bold';
 
-                    } else {
-                        $place_class = 'place__flight';
-                    }
-                    $class_reservation_button = 'btn btn-outline-dark';
-                    $flight['limit_place'] == 0 && $class_reservation_button = 'btn btn-dark disabled';
-                    echo '<tr>
+                        } else {
+                            $place_class = 'place__flight';
+                        }
+                        $class_reservation_button = 'btn btn-outline-success';
+                        $flight['limit_place'] == 0 && $class_reservation_button = 'btn btn-dark disabled';
+                        echo '<tr>
                     <th scope="row">' . $flight['id'] . '</th>
                     <td class="date_flight">' . $flight['date_depart'] . '</td>
                     <td class="date_arrival">' . $flight['date_arriv'] . '</td>
@@ -112,11 +113,11 @@
                     <td class="reserv_flight">
                     <a href="reservation/' . $flight['id'] . '" class="' . $class_reservation_button . '">Reserve now</a></td>
                 </tr>';
-                }
-                ?>
-                </tbody>
-            </table>
-
+                    }
+                    ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>

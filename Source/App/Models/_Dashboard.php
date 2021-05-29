@@ -17,41 +17,79 @@ class _Dashboard
      */
     public function getFlights()
     {
-        $this->db->query('SELECT * FROM flights');
+        $this->db->query(/** @lang text */ 'SELECT * FROM flights');
         $this->db->execute();
         return $this->db->fetch_all_as_arr();
     }
 
     public function GetReservations()
     {
-        $this->db->query('SELECT * FROM reservation');
+        $this->db->query(/** @lang text */ 'SELECT * FROM reservation');
         $this->db->execute();
         return $this->db->fetch_all_as_arr();
     }
 
     public function deleteFlights($id)
     {
-        $this->db->query('DELETE FROM flights WHERE id=:id');
+        $this->db->query(/** @lang text */ 'DELETE FROM flights WHERE id=:id');
         $this->db->bind(':id', $id, PDO::PARAM_INT);
         return $this->db->execute();
     }
 
+    /**
+     * @param $id
+     * @param $departDate
+     * @param $arrivalDate
+     * @param $departure
+     * @param $arrival
+     * @param $resetPlace
+     * @param $Trademark
+     * @return mixed
+     */
     public function editFlights($id, $departDate, $arrivalDate, $departure, $arrival, $resetPlace, $Trademark)
     {
-        $this->db->query('
+        $this->db->query(/** @lang text */ '
                 UPDATE 
-                    flights
+                    `flights`
                 SET 
-                    date_depart = :departDate,
-                    date_arriv = :arrivalDate,
-                    departure = :departure,
-                    arrival=:arrival,
-                    limit_place=:limit_place,
-                    trademark=:trademark
+                    `date_depart` = :departDate,
+                    `date_arriv` = :arrivalDate,
+                    `departure` = :departure,
+                    `arrival`=:arrival,
+                    `limit_place`=:limit_place,
+                    `trademark`=:trademark
                 WHERE
-                      id=:id;
+                      `id`=:id;
         ');
         $this->db->bind(':id', $id, PDO::PARAM_INT);
+        $this->db->bind(':limit_place', $resetPlace, PDO::PARAM_INT);
+        $this->db->bind(':departDate', $departDate, PDO::PARAM_STR);
+        $this->db->bind(':arrivalDate', $arrivalDate, PDO::PARAM_STR);
+        $this->db->bind(':departure', $departure, PDO::PARAM_STR);
+        $this->db->bind(':arrival', $arrival, PDO::PARAM_STR);
+        $this->db->bind(':trademark', $Trademark, PDO::PARAM_STR);
+        return $this->db->execute();
+    }
+
+    public function addFlight($admin, $departDate, $arrivalDate, $departure, $arrival, $resetPlace, $Trademark)
+    {
+        $this->db->query(/** @lang text */ '
+                INSERT INTO 
+                    `flights`
+                (`date_depart`,`date_arriv`,`departure`,`arrival`,`limit_place`,`trademark`,`admin`)
+                
+                VALUES 
+                (
+                    :departDate,
+                    :arrivalDate,
+                    :departure,
+                    :arrival,
+                    :limit_place,
+                    :trademark,
+                    :admin
+                )
+        ');
+        $this->db->bind(':admin', $admin, PDO::PARAM_STR);
         $this->db->bind(':limit_place', $resetPlace, PDO::PARAM_INT);
         $this->db->bind(':departDate', $departDate, PDO::PARAM_STR);
         $this->db->bind(':arrivalDate', $arrivalDate, PDO::PARAM_STR);

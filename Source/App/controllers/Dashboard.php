@@ -87,8 +87,32 @@ class Dashboard extends Controller
         print_r(json_encode([$r]));
     }
 
-    public function editflight($data)
+    public function editflight()
     {
-        print_r(json_encode([1]));
+//        header('Access-Control-Allow-Origin: *');
+
+        $json = json_decode(file_get_contents('php://input'));
+        $r = $this->modalPage->editFlights($json->id, $json->departDate, $json->arrivalDate, $json->departure,
+            $json->arrival, $json->resetPlace, $json->Trademark);
+        if ($r) {
+            print_r(json_encode($json));
+        } else {
+            print_r(json_decode(0));
+        }
+    }
+
+    public function addflight()
+    {
+        $json = json_decode(file_get_contents('php://input'));
+        $r = $this->modalPage->addFlight($_SESSION['user_name'], $json->departDate, $json->arrivalDate, $json->departure,
+            $json->arrival, $json->resetPlace, $json->Trademark);
+        print_r(json_encode($r));
+
+    }
+
+    public function add()
+    {
+        $data['title'] = 'Add flight';
+        $this->view("dashboard/add", $data);
     }
 }

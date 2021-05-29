@@ -22,7 +22,7 @@
             </a>
         </div>
         <form class="search-box">
-            <input type="text" placeholder="search" class="search-box__input">
+            <input type="text" placeholder="Search by admin" class="search-box__input">
             <button class="search-box__btn">
                 <i class="search-box__btn__icon bi bi-search"></i>
             </button>
@@ -37,6 +37,7 @@
             </div>
             <ul class="panel">
                 <li><a href="<?php echo URLROOT . '/dashboard/edit' ?>">Setting</a></li>
+                <li><a href="<?php echo URLROOT . '/dashboard/add' ?>">Add Flight</a></li>
                 <li><a href="<?php echo URLROOT . '/dashboard/user' ?>">Switch to user</a></li>
                 <li class='danger'><a href="<?php echo URLROOT . '/dashboard/logout' ?>">Log out</a></li>
 
@@ -44,7 +45,8 @@
         </div>
     </nav>
 </header>
-<div class="reservation">
+<div class="container">
+
     <div class="table-responsive ">
         <caption><h1 class="text-center mb-5">List of Reservations</h1></caption>
         <table class="table table-striped ">
@@ -72,17 +74,12 @@
                 } else {
                     $place_class = 'place__flight';
                 }
-                $admin = $flight['admin'];
+                $admin = ucwords($flight['admin']);
                 if ($admin == ucwords($_SESSION['user_name'])) {
                     $admin = 'you';
                 }
-                if ($flight['admin'] != ucwords($_SESSION['user_name'])) {
-                    $class_edit = 'btn btn-outline-dark action_flight__edit disabled';
-                    $class_delete = 'btn btn-danger action_flight__delete disabled';
-                } else {
-                    $class_edit = 'btn btn-outline-dark action_flight__edit';
-                    $class_delete = 'btn btn-danger action_flight__delete';
-                }
+                $class_edit = 'btn btn-outline-dark action_flight__edit';
+                $class_delete = 'btn btn-danger action_flight__delete';
                 $admin = ucwords($admin);
                 echo '<tr>
                     <th scope="row">' . $flight['id'] . '</th>
@@ -117,8 +114,7 @@
                     </h1>
                 </div>
                 <div class="col mb-4">
-                    <input type="text" class="form-control popup__limit-place" placeholder="Limit Place"
-                           pattern="[0-9]{3}"
+                    <input type="number" class="form-control popup__limit-place" placeholder="Limit Place"
                            required>
                 </div>
                 <div class="col mb-4">
@@ -138,7 +134,7 @@
                 </div>
                 <div class="col d-flex justify-content-between">
                     <button type="button" class="btn btn-outline-danger popUpCancelButton">Cancel</button>
-                    <button type="submit" class="btn btn-success popUpApplyButton">Apply</button>
+                    <button type="button" class="btn btn-success popUpApplyButton">Apply</button>
                 </div>
             </div>
         </form>
