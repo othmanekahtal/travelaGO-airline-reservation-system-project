@@ -29,12 +29,22 @@ btn_form_search.addEventListener('click', function (e) {
             dangerMode: true,
         });
     } else {
+
         [...flights_date].forEach(element => {
+            console.log(
+                // new Intl.DateTimeFormat('de-DE')
+                //     .format(new Date(element?.parentElement.children[1].textContent)) === new Intl
+                //     .DateTimeFormat('de-DE').format(new Date(date_input))
+                //
+                // ,
+                element?.parentElement.children[3].textContent, depart_input
+                , element?.parentElement.children[4].textContent, arrival_input
+            );
             if (new Intl.DateTimeFormat('de-DE')
                     .format(new Date(element?.parentElement.children[1].textContent)) === new Intl
                     .DateTimeFormat('de-DE').format(new Date(date_input)) &&
-                element?.parentElement.children[2].textContent === depart_input &&
-                element?.parentElement.children[3].textContent === arrival_input
+                element?.parentElement.children[3].textContent.toLowerCase() === depart_input.toLowerCase() &&
+                element?.parentElement.children[4].textContent.toLowerCase() === arrival_input.toLowerCase()
             ) {
                 element?.parentElement.classList.remove('hidden-element');
             } else {
@@ -46,4 +56,4 @@ btn_form_search.addEventListener('click', function (e) {
 
 search_box__input.addEventListener('keyup', function () {
     searchInHTMLCollection(flights_trademark, this)
-})
+});

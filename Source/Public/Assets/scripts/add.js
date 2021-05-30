@@ -1,3 +1,4 @@
+import {redirectTo} from './functions.js';
 //////////////////////////////////////////////////////////////
 ///////////////////////////////////////////VARIABLES ::
 
@@ -9,13 +10,6 @@ let add__departure = document.querySelector('.add__departure');
 let add__trademark = document.querySelector('.add__trademark');
 const ApplyBtn = document.querySelector('.ApplyButton');
 const cancelBtn = document.querySelector('.CancelButton');
-
-//////////////////////////////////////////////////////////////////////
-//////////////////////////////////////// FUNCTIONS ::
-
-function redirectTo(URL) {
-    window.location = URL;
-}
 
 
 //////////////////////////////////////////////////////////////////////

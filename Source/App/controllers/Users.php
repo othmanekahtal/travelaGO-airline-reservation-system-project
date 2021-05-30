@@ -25,14 +25,12 @@ class Users extends Controller
                 'password' => $_POST['password'],
                 'repeat_password' => $_POST['repeat_password'],
                 "role" => $_POST['role'],
-                "date" => $_POST['date'],
                 "accept" => '',
                 'email_error' => '',
                 'name_error' => '',
                 'password_error' => '',
                 'password_confirm_error' => '',
                 'role_error' => '',
-                'date_error' => '',
                 'accept_error' => ''];
             if (isset($_POST['accept'])) {
                 $data["accept"] = $_POST['accept'];
@@ -69,8 +67,7 @@ class Users extends Controller
                 && empty($data['password_error'])
                 && empty($data['password_confirm_error'])
                 && empty($data['role_error'])
-                && empty($data['date_error']
-                    && !empty($data['accept']))
+                && !empty($data['accept'])
             ) {
                 $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
 
@@ -95,7 +92,6 @@ class Users extends Controller
                 'password_error' => '',
                 'password_confirm_error' => '',
                 'role_error' => '',
-                'date_error' => '',
                 'accept_error' => ''];
         }
         if (isset($_SESSION['user_role'])) {

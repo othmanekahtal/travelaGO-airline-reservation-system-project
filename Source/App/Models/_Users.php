@@ -30,13 +30,12 @@ class _Users
 
     public function insertUser($data)
     {
-        $this->db->query(/** @lang text */ 'insert into user (name,email,password,birthday,role) values (:name,:email,:password,:birthday,:role)');
+        $this->db->query(/** @lang text */ 'insert into user (name,email,password,role) values (:name,:email,:password,:role)');
         // bind placeholders :
         $this->db->bind(":name", $data['name'], PDO::PARAM_STR);
         $this->db->bind(":email", $data['email'], PDO::PARAM_STR);
         $this->db->bind(":password", $data['password'], PDO::PARAM_STR);
         $this->db->bind(":role", $data['role'], PDO::PARAM_STR);
-        $this->db->bind(":birthday", $data['date'], PDO::PARAM_STR);
         // verify query execution:
         if ($this->db->execute()) {
             return true;

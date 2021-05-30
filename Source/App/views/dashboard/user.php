@@ -9,7 +9,6 @@
             integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
             crossorigin="anonymous"></script>
     <!-- CSS only -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.5.0/mdb.min.css" rel="stylesheet"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
@@ -54,31 +53,39 @@
 <div class="container">
     <div class="reservation">
         <div class="reservation-search">
-            <h1 class="primary-title">Take your flight now</h1>
-            <form class="search-form">
-                <div class="input input__date">
-                    <label for="date_search">date</label>
-                    <input class type="date" name="date" id="date_search">
-                </div>
-                <div class="input input__primary">
-                    <label for="depart">depart</label>
-                    <input type="text" id="depart">
-                </div>
-                <div class="input input__primary">
-                    <label for="depart">arrival</label>
-                    <input type="text" id="arrival">
-                </div>
-                <div class="input input__submit">
-                    <input type="submit" value="search">
-                </div>
-            </form>
+            <div class="h1 text-center mt-4 text-uppercase">Take your flight now :</div>
+            <div class="container">
+                <div class="row mt-3 justify-content-center">
+                    <div class="col-md-6 m-5 bg-light rounded pt-5 px-4">
+                        <form class="search-form">
+                            <div class="form-group mb-3">
+                                <label for="date_search" class="mb-2 text-capitalize">Depart date :</label>
+                                <input type="date" class="form-control" name="date" id="date_search">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="depart" class="mb-2 text-capitalize">depart :</label>
+                                <input class="form-control" type="text" id="depart" placeholder="Rabat">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="arrival" class="mb-2 text-capitalize">arrival :</label>
+                                <input class="form-control" type="text" id="arrival" placeholder="New York">
+                            </div>
 
-            <div class="table-responsive ">
-                <caption><h1 class="text-center mb-5">List of Reservations</h1></caption>
+                            <div class="my-4 input input__submit text-center">
+                                <input class="btn btn-outline-dark" type="submit" value="search">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-responsive my-5">
+                <div class="h2 text-center mb-5 text-uppercase ">List of Reservations :</div>
+
                 <table class="table table-striped ">
                     <thead>
                     <tr>
-                        <th scope="col">#</th>
+                        <th scope="col" class="px-4">#</th>
                         <th scope="col">Date</th>
                         <th scope="col">Arrival date</th>
                         <th scope="col">Departure</th>
@@ -100,10 +107,10 @@
                         } else {
                             $place_class = 'place__flight';
                         }
-                        $class_reservation_button = 'btn btn-outline-success';
-                        $flight['limit_place'] == 0 && $class_reservation_button = 'btn btn-dark disabled';
+                        $class_reservation_button = 'btn btn-outline-success reserve_btn';
+                        $flight['limit_place'] == 0 && $class_reservation_button = 'btn btn-success disabled';
                         echo '<tr>
-                    <th scope="row">' . $flight['id'] . '</th>
+                    <th scope="row" class="px-3">' . $flight['id'] . '</th>
                     <td class="date_flight">' . $flight['date_depart'] . '</td>
                     <td class="date_arrival">' . $flight['date_arriv'] . '</td>
                     <td class="departure_flight">' . $flight['departure'] . '</td>
@@ -111,7 +118,8 @@
                     <td class="' . $place_class . '">' . $flight['limit_place'] . '</td>                    
                     <td class="trademark_flight">' . $flight['trademark'] . '</td>
                     <td class="reserv_flight">
-                    <a href="reservation/' . $flight['id'] . '" class="' . $class_reservation_button . '">Reserve now</a></td>
+                    <a href="' . URLROOT . '/dashboard/reservation/' . $flight['id'] . '" class="' .
+                            $class_reservation_button . '">Reserve now</a></td>
                 </tr>';
                     }
                     ?>
@@ -120,7 +128,9 @@
             </div>
         </div>
     </div>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script type="module" src="<?php echo URLROOT . '/Assets/scripts/user.js' ?>"></script>
+</div>
+<?php require_once APPROOT . '/views/include/footer.php'; ?>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script type="module" src="<?php echo URLROOT . '/Assets/scripts/user.js' ?>"></script>
 </body>
 </html>

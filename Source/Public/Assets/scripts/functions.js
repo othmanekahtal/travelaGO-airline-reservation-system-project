@@ -22,8 +22,13 @@ const searchInHTMLCollection = (htmlCollection, inputData = this) => {
         }
     )
 }
+
+const redirectTo = (URL) => {
+    window.location = URL;
+}
+
 //////////////////////////////////////////////////////////////
 ///////////////////////////////////////////VARIABLES ::
 const search_box__input = document.querySelector('.search-box__input');
 
-export {profile, searchInHTMLCollection, search_box__input};
+export {profile, redirectTo, searchInHTMLCollection, search_box__input};

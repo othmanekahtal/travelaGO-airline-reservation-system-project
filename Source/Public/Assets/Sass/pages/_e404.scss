@@ -1,0 +1,28 @@
+@import "../base/typography";
+
+.main {
+  width: 100vw;
+  height: 100vh;
+  background-image: url("../../Assets/images/404.jpg");
+  background-size: cover;
+  background-position: center;
+
+
+  .main-content {
+    display: grid;
+    place-items: center start;
+    place-content: center;
+    height: 100vh;
+    background-color: white;
+    padding-left: 250px;
+    width: 850px;
+  }
+
+  .h1 {
+    width: 60%;
+  }
+
+  .btn {
+    display: inline-block;
+  }
+}

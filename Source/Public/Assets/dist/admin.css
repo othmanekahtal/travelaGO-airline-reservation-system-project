@@ -1,17 +1,11 @@
-html {
-  font-size: 62.5%; }
-
-html {
-  font-size: 62.5%; }
-
 nav {
-  font-size: 1.8rem;
+  font-size: 18px;
   background-color: white;
-  padding: 1.5rem 4.5rem;
+  padding: 15px 45px;
   color: #999; }
 
 .logo {
-  height: 6.5rem; }
+  height: 65px; }
   .logo img {
     height: 100%; }
 
@@ -29,19 +23,19 @@ nav {
     .search-box__btn:active {
       transform: translateY(4px); }
     .search-box__btn__icon {
-      font-size: 2rem;
+      font-size: 20px;
       color: #999; }
   .search-box__input {
     font-family: inherit;
     font-size: inherit;
     outline: none;
     border: none;
-    padding: 0.85rem 2rem;
+    padding: 8.5px 20px;
     background-color: #f4f2f2;
-    border-radius: 2rem;
+    border-radius: 20px;
     width: 90%;
     transition: all 0.35s;
-    margin-right: -3.25rem;
+    margin-right: -32.5px;
     color: #999; }
     .search-box__input::-webkit-input-placeholder {
       color: #ccc; }
@@ -53,22 +47,22 @@ nav {
   position: relative; }
 
 .profile {
-  border-radius: 1rem;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   cursor: pointer;
   align-self: stretch;
-  padding: .75rem 1.5rem;
+  padding: 7.5px 15px;
   position: relative;
   transition: all 0.25s ease; }
   .profile__avatar {
-    height: 4.5rem;
-    width: 4.5rem; }
+    height: 45px;
+    width: 45px; }
     .profile__avatar img {
       height: 100%;
       width: 100%;
       border-radius: 50%;
-      margin-right: 1rem;
+      margin-right: 10px;
       border: 2px solid transparent;
       transition: border .25s ease-in-out; }
   .profile__username {
@@ -95,13 +89,13 @@ nav {
   overflow: hidden;
   position: absolute;
   background-color: #f0eeee;
-  border-bottom-left-radius: 1rem;
-  border-bottom-right-radius: 1rem;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
   padding-left: unset;
   width: 100%;
   list-style: none; }
   .panel li {
-    padding: .75rem .75rem .75rem 2rem; }
+    padding: 7.5px 7.5px 7.5px 25px; }
     .panel li a {
       display: inline-block;
       text-decoration: none;

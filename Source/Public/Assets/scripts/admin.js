@@ -124,9 +124,13 @@ search_box__input.addEventListener('keyup', function () {
                         buttons: {
                             content: "ok"
                         }
+                    }).then((value) => {
+                        console.log(value);
+                        if (value) {
+                            window.location.reload();
+                        }
                     });
                     // to ignore the bubbling problem in js events :
-                    window.location.reload();
                     console.log(popup__limit_place.value, popup__arrival.value, popup__depart_date.value, popup__departure.value, popup__trademark.value)
                     resetPlace.textContent = popup__limit_place.value;
                     arrival.textContent = popup__arrival.value;

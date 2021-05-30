@@ -13,7 +13,7 @@
     <link rel="shortcut icon" href="<?php echo URLROOT . '/Assets/images/logo.png' ?>" type="image/x-icon">
     <title><?php echo SITE_NAME . ' | ' . $data['title'] ?></title>
 </head>
-<body class="position-relative">
+<body class="position-relative" style="height: 100vh">
 <header class="header">
     <nav class="d-flex justify-content-between align-items-center">
         <div class="logo rounded-circle">
@@ -48,7 +48,7 @@
 <div class="container">
 
     <div class="table-responsive ">
-        <caption><h1 class="text-center mb-5">List of Reservations</h1></caption>
+        <h1 class="h1 text-center my-5 text-uppercase">List of Reservations :</h1>
         <table class="table table-striped ">
             <thead>
             <tr>
@@ -109,8 +109,8 @@
         <form>
             <div class="form-row">
                 <div class="text-center mb-4">
-                    <h1>
-                        Update flight
+                    <h1 class="text-uppercase">
+                        Update flight :
                     </h1>
                 </div>
                 <div class="col mb-4">
@@ -140,6 +140,12 @@
         </form>
     </div>
 </div>
+<div class="position-absolute w-100 bottom-0">
+    <?php
+    require_once APPROOT . '/views/include/footer.php';
+    ?>
+</div>
+
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="module" src="<?php echo URLROOT . '/Assets/scripts/admin.js' ?>"></script>
 </body>

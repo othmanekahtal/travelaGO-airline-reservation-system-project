@@ -1,5 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;500;600;700&display=swap");
+
 body {
   font-family: "Raleway", sans-serif;
-  font-size: 1.7rem;
+  //font-size: 1.7rem;
+}
+
+.Primary-title {
+  line-height: 1.4;
+  font-size: 45px;
+  font-weight: bold;
+}
+
+.ultra-title {
+  font-size: 14px;
 }
