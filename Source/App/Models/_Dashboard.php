@@ -129,7 +129,10 @@ class _Dashboard
         foreach ($id_Passenger as $i => $id) {
             $this->db->query(/** @lang text */ 'SELECT * FROM reservation WHERE id_passanger=:id');
             $this->db->bind(':id', $id['id'], PDO::PARAM_INT);
-            array_push($finalResult, $this->db->fetch_as_obj());
+            $result = $this->db->fetch_as_obj();
+            if ($result) {
+                array_push($finalResult, $result);
+            }
         }
         return $finalResult;
     }

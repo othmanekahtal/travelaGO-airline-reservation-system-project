@@ -72,7 +72,7 @@ class Dashboard extends Controller
 
             $data['title'] = 'Your tickets';
             $data['Tickets'] = $this->modalPage->GetReservations($_SESSION['user_id']);
-//        die($data['Tickets'][0]->id);
+//            die($data['Tickets'][0]->id);
             $this->view("dashboard/tickets", $data);
         } else {
             redirect('users/login');

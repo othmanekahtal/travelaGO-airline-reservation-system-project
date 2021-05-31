@@ -10,10 +10,22 @@
 
 class Core
 {
+    /**
+     * @var mixed|string
+     */
     protected mixed $currentController = 'Home';
+    /**
+     * @var string
+     */
     protected string $currentMethod = 'index';
+    /**
+     * @var array|string[]
+     */
     protected array $params = [];
 
+    /**
+     * Core constructor.
+     */
     public function __construct()
     {
         $url = $this->getUrl();
@@ -46,6 +58,9 @@ class Core
         call_user_func([$this->currentController, $this->currentMethod], $this->params);
     }
 
+    /**
+     * @return string[]
+     */
     public function getUrl()
     {
         if (isset($_GET['url'])) {

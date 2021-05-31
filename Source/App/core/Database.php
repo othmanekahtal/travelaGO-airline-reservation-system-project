@@ -10,6 +10,9 @@ class database
     private $stmt;
     private $error;
 
+    /**
+     * database constructor.
+     */
     public function __construct()
     {
         // set dsn :
@@ -24,11 +27,19 @@ class database
         }
     }
 
+    /**
+     * @param $sql
+     */
     public function query($sql)
     {
         $this->stmt = $this->database_command->prepare($sql);
     }
 
+    /**
+     * @param $placeholder
+     * @param $value
+     * @param null $type
+     */
     public function bind($placeholder, $value, $type = null)
     {
         if (is_null($type)) $type = match (true) {
@@ -40,24 +51,37 @@ class database
         $this->stmt->bindValue($placeholder, $value, $type);
     }
 
-    public function execute()
+    /**
+     * @return mixed
+     */
+    public function execute(): mixed
     {
         return $this->stmt->execute();
     }
 
-    public function fetch_as_obj()
+    /**
+     * @return mixed
+     */
+    public function fetch_as_obj(): mixed
     {
         $this->execute();
         return $this->stmt->fetch(PDO::FETCH_OBJ);
     }
 
-    public function fetch_all_as_arr()
+    /**
+     * @return mixed
+     */
+    public function fetch_all_as_arr(): mixed
     {
         $this->execute();
         return $this->stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function rowCount(){
+    /**
+     * @return mixed
+     */
+    public function rowCount(): mixed
+    {
         return $this->stmt->rowCount();
     }
 }

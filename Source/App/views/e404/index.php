@@ -15,8 +15,7 @@
     <title><?php echo SITE_NAME . ' | ' . $data['title'] ?></title>
 </head>
 
-<body>
-<nav></nav>
+<body style="width: 100vw;overflow-x: hidden">
 <div class="main">
     <div class="main-content">
         <div class="title-primary-and-ultra-title">

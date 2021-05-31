@@ -47,10 +47,10 @@
 <div class="container">
     <?php
     if (count($data['Tickets'])) {
+        echo '<div class="row">';
         foreach ($data['Tickets'] as $arr => $obj) {
             echo '
-                <div class="row">
-                      <div class="col-sm-6 my-4">
+                      <div class="col-sm-4 my-4">
                         <div class="card">
                           <div class="card-body">
                             <p><span class="fw-bold">ID RESERVATION: </span>#000000' . $obj->id . '</p>
@@ -60,8 +60,9 @@
                           </div>
                         </div>
                       </div>
-                  </div>';
+                  ';
         }
+        echo '</div>';
     } else {
         echo '
             <div class="row justify-content-center align-items-center" style="height: 85vh">
@@ -79,7 +80,11 @@
     }
     ?>
 </div>
-<?php require_once APPROOT . '/views/include/footer.php'; ?>
+<div class="position-absolute w-100 bottom-0">
+    <?php
+    require_once APPROOT . '/views/include/footer.php';
+    ?>
+</div>
 
 <script type="module" src="<?php echo URLROOT . '/Assets/scripts/navbar.js' ?>"></script>
 </body>

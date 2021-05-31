@@ -1,4 +1,4 @@
-<footer class="w-100 bg-light text-center text-lg-start mt-4">
+<footer class="w-100 bg-light text-center text-lg-start">
     <!-- Copyright -->
     <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
         © MADE WITH ❤

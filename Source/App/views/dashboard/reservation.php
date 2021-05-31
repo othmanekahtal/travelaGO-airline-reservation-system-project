@@ -32,6 +32,7 @@
             <ul class="panel">
                 <li><a href="<?php echo URLROOT . '/dashboard/edit' ?>">Setting</a></li>
                 <li><a href="<?php echo URLROOT . '/dashboard/user' ?>">Dashboard</a></li>
+                <li><a href="<?php echo URLROOT . '/dashboard/tickets' ?>">Your Tickets</a></li>
                 <?php if ($_SESSION['user_role'] == 'admin') {
                     echo '<li><a href=' . URLROOT . '/dashboard/admin>Switch to admin</a></li>';
                 } ?>
